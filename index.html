@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10분 안에 판단하라 — 재난 대피 강의</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    min-height: 100vh;
+    background: #0f1117;
+    color: #e8eaf0;
+    font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+  .badge {
+    font-size: 12px;
+    background: #e53e3e;
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
+  h1 {
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 800;
+    text-align: center;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  h1 span { color: #fc8c3c; }
+  .sub {
+    font-size: 16px;
+    color: #8a9bb0;
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .cards {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 800px;
+  }
+  .card {
+    background: #1a1f2e;
+    border: 1px solid #2a3148;
+    border-radius: 20px;
+    padding: 36px 32px;
+    width: 340px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    border-color: #4a5580;
+  }
+  .card-icon { font-size: 36px; }
+  .card-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #8a9bb0;
+    text-transform: uppercase;
+  }
+  .card h2 {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .card p {
+    font-size: 14px;
+    color: #8a9bb0;
+    line-height: 1.6;
+  }
+  .card-btn {
+    margin-top: 8px;
+    display: inline-block;
+    background: #fc8c3c;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+  }
+  .card:nth-child(2) .card-btn { background: #4a7fc1; }
+  .info {
+    margin-top: 48px;
+    font-size: 13px;
+    color: #4a5580;
+    text-align: center;
+    line-height: 1.8;
+  }
+</style>
+</head>
+<body>
+
+<div class="badge">🚨 재난 대피 강의</div>
+
+<h1>10분 안에 <span>판단하라</span></h1>
+<p class="sub">화재 · 지진 — 10분 생존 판단법 | 2인 나레이션 강의</p>
+
+<div class="cards">
+  <a class="card" href="results/10분_안에_판단하라_최종_음성.html">
+    <div class="card-icon">🎓</div>
+    <div class="card-tag">Version 1 · 성인용</div>
+    <h2>지수 &amp; 종욱의<br>재난 대피 강의</h2>
+    <p>차분하고 전문적인 2인 나레이션으로 진행하는 일반 시민 대상 강의입니다.</p>
+    <div class="card-btn">▶ 강의 시작</div>
+  </a>
+
+  <a class="card" href="results/10분_안에_판단하라_대학생용.html">
+    <div class="card-icon">🎒</div>
+    <div class="card-tag">Version 2 · 대학생용</div>
+    <h2>지수 &amp; 민준의<br>캠퍼스 생존 강의</h2>
+    <p>기숙사·자취방·캠퍼스 특화! 대학생 친구들이 나누는 티키타카 스타일 강의입니다.</p>
+    <div class="card-btn">▶ 강의 시작</div>
+  </a>
+</div>
+
+<div class="info">
+  ▶ 나레이션 재생 버튼을 클릭하면 음성이 시작됩니다<br>
+  키보드 ← → 또는 터치 스와이프로 슬라이드를 넘기세요<br>
+  <br>
+  참고 자료: 행정안전부 · 소방청 · 기상청 · KOSHA
+</div>
+
+</body>
+</html>
