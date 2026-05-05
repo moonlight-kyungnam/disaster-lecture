@@ -246,10 +246,10 @@
 <!-- 슬라이드 1: 타이틀 -->
 <div class="slide slide-0 active" role="region" aria-label="슬라이드 1">
   <div class="content" style="text-align:center;">
-    <div class="title-tag fragment">2026 · 일반 시민 안전교육</div>
+    <div class="title-tag fragment">재난 안전교육</div>
     <h1 class="fragment" style="font-size:clamp(2.6rem,6.5vw,4rem);">⏱ 10분 안에 판단하라</h1>
     <p class="subtitle fragment mt-md">일반 시민을 위한 재난 대피 강의</p>
-    <p class="fragment mt-lg" style="font-size:1.1rem;color:var(--accent);">문종욱</p>
+    <p class="fragment mt-lg" style="font-size:1.1rem;color:var(--accent);">경남대학교 건축학부</p>
   </div>
 </div>
 
@@ -885,13 +885,16 @@ const talkScript = [
 #tts-btns button{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);
   color:#fff;border-radius:8px;padding:5px 14px;cursor:pointer;font-size:13px;}
 #tts-btns button:hover{background:rgba(255,255,255,0.25);}
+#tts-prev,#tts-next{background:rgba(100,130,200,0.2)!important;border-color:rgba(100,130,200,0.4)!important;}
 </style>
 <div id="tts-overlay">&#9654; 나레이션 재생</div>
 <div id="tts-bar">
   <span class="spk spk-f" id="tts-badge">지수</span>
   <span id="tts-text">재생 준비 중...</span>
   <div id="tts-btns">
+    <button id="tts-prev">&#10094; 이전</button>
     <button id="tts-pause">&#9646;&#9646; 일시정지</button>
+    <button id="tts-next">다음 &#10095;</button>
     <button id="tts-mute">&#128263; 음성 끄기</button>
   </div>
 </div>
@@ -2047,7 +2050,13 @@ function playSegment(slideNum, idx){
   badge.className='spk '+(isF?'spk-f':'spk-m');
   stopAudio();
   audio=new Audio(seg.file);
-  audio.addEventListener('ended',()=>{if(!muted&&!paused)playSegment(slideNum,idx+1);});
+  audio.addEventListener('ended',()=>{
+    if(!muted&&!paused){
+      const segs=TIMELINES[slideNum];
+      if(idx+1>=segs.length){autoNextSlide();}
+      else{playSegment(slideNum,idx+1);}
+    }
+  });
   audio.addEventListener('error',()=>{console.warn('오디오 실패:',seg.file);playSegment(slideNum,idx+1);});
   if(!muted)audio.play().catch(e=>console.warn(e));
 }
@@ -2061,6 +2070,12 @@ function startSlide(n){
 window.speakSlide=function(index){
   if(started)startSlide(index+1);
 };
+// 슬라이드 자동 넘김 (마지막 세그먼트 종료 시)
+function autoNextSlide(){
+  if(typeof goTo==='function'&&typeof current!=='undefined'){
+    if(current<TOTAL-1)goTo(current+1);
+  }
+}
 // 최초 실행 버튼 (브라우저 자동재생 정책 우회)
 overlay.addEventListener('click',()=>{
   overlay.style.display='none';
@@ -2078,6 +2093,12 @@ btnMute.addEventListener('click',()=>{
     started=false;btnMute.innerHTML='&#128266; 음성 켜기';}
   else{overlay.style.display='none';bar.style.display='flex';started=true;
     btnMute.innerHTML='&#128263; 음성 끄기';startSlide(curSlide);}
+});
+document.getElementById('tts-prev').addEventListener('click',()=>{
+  if(typeof goTo==='function'&&typeof current!=='undefined'&&current>0)goTo(current-1);
+});
+document.getElementById('tts-next').addEventListener('click',()=>{
+  if(typeof goTo==='function'&&typeof current!=='undefined'&&current<TOTAL-1)goTo(current+1);
 });
 })();
 </script>
